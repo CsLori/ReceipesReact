@@ -1,4 +1,5 @@
 import React from 'react';
+import Addingredient from './AddIngredient';
 
 class Receipe extends React.Component {
   state = {
@@ -7,39 +8,42 @@ class Receipe extends React.Component {
   };
 
   render() {
+    const { ingredients } = this.state;
     return (
       <React.Fragment>
         <ul>
-          {this.state.ingredients.map(ingredient => {
-            return <li key={ingredient}>{ingredient}</li>;
+          {ingredients.map((ingredient, index) => {
+            return (
+              <li key={index}> {ingredient} </li>
+            ); /*INDEX needs to be changed later!!!! */
           })}
-          <form onSubmit={this.handleSubmit}>
-            <input id="newIngredient" name="inputIngredient" type="text" />{' '}
-            <br />
-            <button
-              id="btn"
-              type="submit"
-              onClick={() => this.addNewIngedient(this.state.newIngredient)}
-            >
-              Add your ingredient
-            </button>
-          </form>
+
+          <Addingredient
+            addNewIngedient={this.addNewIngedient}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
         </ul>
       </React.Fragment>
     );
   }
 
-  addNewIngedient = newIngredient => {
+  addNewIngedient = ingredientToAdd => {
+    console.log(ingredientToAdd);
     this.setState(currentState => {
-        return { ingredients: [...currentState.ingredients, newIngredient] };
+      return { ingredients: [...currentState.ingredients, ingredientToAdd] };
     });
-    console.log(this.state.ingredients)
+    console.log(this.state.ingredients, ingredientToAdd);
+  };
+
+  handleChange = e => {
+    this.setState({ inputIngredient: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(e.target);
-    this.addNewIngedient(e.target.newIngredient);
+    this.addNewIngedient(this.state.inputIngredient);
+    this.setState({ inputIngredient: '' });
   };
 }
 
