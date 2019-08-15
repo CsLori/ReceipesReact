@@ -19,6 +19,7 @@ class Receipe extends React.Component {
           })}
 
           <Addingredient
+            inputIngredient={this.state.inputIngredient}
             addNewIngedient={this.addNewIngedient}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
@@ -33,7 +34,6 @@ class Receipe extends React.Component {
     this.setState(currentState => {
       return { ingredients: [...currentState.ingredients, ingredientToAdd] };
     });
-    console.log(this.state.ingredients, ingredientToAdd);
   };
 
   handleChange = e => {
