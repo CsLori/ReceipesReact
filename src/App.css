@@ -45,3 +45,8 @@ ul {
   color: white;
   text-align: center;
 }
+
+#spaghettiPic {
+   background-repeat: no-repeat;
+  background-size: 1920px 1080px;
+}
