@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Addingredient(props) {
+function AddIngredient(props) {
   return (
     <form onSubmit={props.handleSubmit}>
       <input id="ingredient"
@@ -16,4 +16,4 @@ function Addingredient(props) {
   );
 }
 
-export default Addingredient;
+export default AddIngredient;
